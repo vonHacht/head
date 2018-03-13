@@ -82,10 +82,15 @@ celerybeat-schedule
 # dotenv
 .env
 
-# virtualenv
+# virtualenv (please issue $ virtual >ENV<)
 .venv
 venv/
 ENV/
+# lib
+# local
+# bin
+# include
+# pip-selfcheck.json
 
 # Spyder project settings
 .spyderproject
@@ -99,3 +104,9 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# tilde
+*~
+
+# pycharm/IDE
+*.idea
