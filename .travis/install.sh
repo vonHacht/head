@@ -7,7 +7,7 @@ echo "location: $(pwd)"
 echo "content:"
 echo "$(ls)"
 
-if [ "$TRAVIS"=true ]; then
+if [ $TRAVIS == true ]; then
     echo "Running in Travis context"
     ( cd $TRAVIS_BUILD_DIR ; python setup.py install)
 else

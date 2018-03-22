@@ -1,5 +1,6 @@
 from setuptools import setup, find_packages, Command
 
+
 class TestCommand(Command):
     user_options = []
 
@@ -11,7 +12,7 @@ class TestCommand(Command):
 
     def run(self):
         import sys, subprocess
-        raise SystemExit(subprocess.call([sys.executable, 'test/test_head.py']))
+        raise SystemExit(subprocess.call([sys.executable, 'test/__init__.py']))
 
 def run_setup():
 
