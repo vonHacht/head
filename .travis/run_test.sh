@@ -9,6 +9,7 @@ echo "$(ls)"
 
 if [ $TRAVIS == true ] ; then
     echo "Running in Travis context"
+    python travis.py
     python setup.py test
 else
     echo "Not running in Travis context";
