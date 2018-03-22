@@ -9,7 +9,7 @@ echo "$(ls)"
 
 if [ $TRAVIS == true ] ; then
     echo "Running in Travis context"
-    ( cd $TRAVIS_BUILD_DIR ; python setup.py test )
+    python setup.py test
 else
     echo "Not running in Travis context";
     virtualenv ../ENV
