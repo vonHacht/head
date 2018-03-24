@@ -1,15 +1,12 @@
 #!/bin/bash
 
 set -e
-set -x
+#set -x
 
-echo "location: $(pwd)"
-echo "content:"
-echo "$(ls)"
+type time
 
 if [ $TRAVIS == true ] ; then
     echo "Running in Travis context"
-    python travis.py
     python setup.py test
 else
     echo "Not running in Travis context";
