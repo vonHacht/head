@@ -5,7 +5,7 @@ set -e
 
 if [ $TRAVIS == true ]; then
     echo "Installing in Travis context"
-    python travis.py
+    python ./travis/travis.py
     python setup.py install
 else
     virtualenv ../ENV
