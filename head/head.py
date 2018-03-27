@@ -2,21 +2,10 @@ import sys
 import os
 import re
 
-class Singleton(type):
-
-    _instances = {}
-
-    def __call__(cls, *args, **kwargs):
-        if cls not in cls._instances:
-            cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
-        #else:
-        #    cls._instances[cls].__init__(*args, **kwargs)
-
-        return cls._instances[cls]
 
 class Head:
 
-    __metaclass__ = Singleton
+    #__metaclass__ = Singleton
 
     _list = []
     _regex_headerfiles = "#include ((<[^>]+>)|(\"[^\"]+\"))"
@@ -30,12 +19,12 @@ class Head:
             for file in files:
                 possible_file_name = os.path.realpath(directory_path) + '/' + file
                 if os.path.isfile(possible_file_name):
-                    self._list.append(possible_file_name)
-
+                    if possible_file_name not in self._list:
+                        #print "Found file " + possible_file_name
+                        self._list.append(possible_file_name)
 
     def _type_of_file_(self, filename):
         return os.path.splitext(filename)[1]
-
 
     def return_all_files_within_directory(self):
         return self._list
