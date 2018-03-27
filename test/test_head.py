@@ -74,31 +74,28 @@ class TestHead(unittest.TestCase):
         for file in head_instance.return_c_files_within_directory():
             print "{0}".format(file)
 
-    @unittest.skip("Skipping: test_return_of_h_files()")
+    #@unittest.skip("Skipping: test_return_of_h_files()")
     def test_return_of_h_files(self):
 
-        #head_instance = Head(test_pathname + '/code')
+        head_instance = Head(self._test_pathname)
 
-        #self.assertNotEqual(head_instance.return_c_files_within_directory(), [])
+        self.assertNotEqual(head_instance.return_c_files_within_directory(), [])
 
-        #total_number_of_h_files = len(head_instance.return_h_files_within_directory())
+        total_number_of_h_files = len(head_instance.return_h_files_within_directory())
 
-        #try:
-        #    self.assertEqual(total_number_of_h_files, number_of_h_files)
-        #except Exception as e:
-        #    self.fail("Doesn't count correct amount of >h< files, i.e {0} != {1}".format(total_number_of_h_files, number_of_h_files))
+        try:
+            self.assertEqual(total_number_of_h_files, self._number_of_h_files)
+        except Exception as e:
+            self.fail(ErrorMessages.test_error(2, "Doesn't count correct amount of >c< files, i.e {0} != {1}"
+                                               .format(total_number_of_h_files, self._number_of_h_files)))
 
         print("\n ======= H FILES FOUND =======\n")
 
-        #for file in head_instance.return_h_files_within_directory():
-        #    print "{0}".format(file)
+        for file in head_instance.return_h_files_within_directory():
+            print "{0}".format(file)
 
     @unittest.skip("Skipping: test_dict_h_files()")
     def test_dict_h_files(self):
 
         # TODO
         print "Empty..."
-
-
-if __name__ == '__main__':
-    unittest.main()
