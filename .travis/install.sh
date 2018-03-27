@@ -7,7 +7,7 @@ if [ $TRAVIS == true ]; then
     echo "Installing in Travis context"
     echo "$(pwd)"
     echo "$(ls)"
-    python ./travis/travis.py
+    python "$(TRAVIS_BUILD_DIR)/.travis/travis.py"
     python setup.py install
 else
     virtualenv ../ENV
