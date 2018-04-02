@@ -1,6 +1,6 @@
 import unittest
 from head.head import Head
-from misc.error_messages import ErrorMessages
+from logging.error_messages import ErrorMessages
 import os
 
 
@@ -93,9 +93,3 @@ class TestHead(unittest.TestCase):
 
         for file in head_instance.return_h_files_within_directory():
             print "{0}".format(file)
-
-    @unittest.skip("Skipping: test_dict_h_files()")
-    def test_dict_h_files(self):
-
-        # TODO
-        print "Empty..."

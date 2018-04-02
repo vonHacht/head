@@ -1,8 +1,11 @@
 import unittest
-from misc.error_messages import ErrorMessages
-import doctest
-import sys
-import os
+from logging.error_messages import ErrorMessages
+
+skip_list = [
+    'test_head.py',
+    'test_dict.py'
+
+]
 
 
 def all_tests_suite():
@@ -10,7 +13,7 @@ def all_tests_suite():
         suite_names = [
             '%s' % (os.path.splitext(f)[0],)
             for f in os.listdir(os.path.dirname(__file__))
-            if f.startswith('test_') and f.endswith('.py')
+            if f.startswith('test_') and f.endswith('.py') and f not in skip_list
         ]
         try:
             # Applies function to list of inputs

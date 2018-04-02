@@ -1,0 +1,3 @@
+* Check for camelcase vs underline attributes/classes etc
+* Maybe remove singleton if not needed
+* Add runnable script in e.g. a run directory
