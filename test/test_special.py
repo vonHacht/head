@@ -32,6 +32,8 @@ class TestSpecial(unittest.TestCase):
     def test_error_messages(self):
 
         errorMessages = ErrorMessages()
-        #print (errorMessages.__dict__)
+        print(errorMessages.ErrorMessages("TestOfErrorMessage", " A stack trace ! "))
+
+        #print(errorMessages.TestOfErrorMessage.format(" Some stacktrace ... "))
 
         pass

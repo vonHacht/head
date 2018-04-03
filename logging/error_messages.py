@@ -1,5 +1,7 @@
 from logging.directory import Directory
+from configparser2 import SafeConfigParser
 import configparser2
+import codecs
 
 class ErrorMessages(object):
 
@@ -12,26 +14,52 @@ class ErrorMessages(object):
         if directory.value_with_directory_path(propertiesFile) == False:
             raise IOError("File not found: {0}".format(propertiesFile))
 
-        self.configParser.read(directory.value_with_directory_path(propertiesFile))
+        #self.configParser.read(directory.value_with_directory_path(propertiesFile), encoding="UTF-8")
+        self.configParser.read_file(codecs.open(directory.value_with_directory_path(propertiesFile), "r", "utf8"))
+        self.__dict__ = self._dict_attribute(self.configParser)
+        self._all_attribute(self.__dict__)
 
-        sections = self.config_section_map(self.configParser)
-        print(sections)
-        #self.__dict__ = self.config_section_map(sections)
+    def _merge_two_dicts(self, dictOne, dictTwo):
+        returnDict = dictOne.copy()
+        returnDict.update(dictTwo)
+        return returnDict
 
-    def config_section_map(self, configParser):
-        dict1 = {}
+    def _dict_attribute(self, configParser):
+        dict = {}
 
         for section in configParser.sections():
+            for key, value in configParser.items(section):
+                print(key)
+                dict[key] = value
+
+        return dict
+
+    def _all_attribute(self, dict):
+        if type(dict) is dict:
+            for key, value in dict:
+                self.key = value
+
+
+    def ErrorMessages(self, type, message):
+        message = message.lower() # Read from file as lower .. ?
+        #utf8dict =
+
+        print(self.__dict__)
+
+        if hasattr(self, '__dict__'):
             try:
-                dict1[section] = configParser.get(section, 'NotAbleToInstanceWithPath')
-                if dict1[section] == -1:
-                    print("skip: {0}".format(section))
-            except:
-                print("exception on {0}!".format(section))
-                dict1[section] = None
+                print(self.__dict__[type])
+            except KeyError:
+                print("KEYERROR")
+                return None
+            #try:
 
-        return dict1
+            #except KeyError
+            #possibleReturnValue = self.__dict__[type]
+            #if possibleReturnValue != -1:
+            #    return possibleReturnValue.format(message)
 
+        return None
 
 
 
